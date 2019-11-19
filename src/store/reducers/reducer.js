@@ -27,7 +27,7 @@ export const reducer = (state = initialState, action) => {
       newState.grid[row][position] = symbol;
 
       const result = checkWinner(newState.grid, newState.turn, state.endGame, newState.gameConfig);
-      console.log(result);
+      // console.log(result);
       newState.endGame = result.endGame;
       newState.winner = result.winner;
       newState.isDraw = result.winner === '' && result.endGame;

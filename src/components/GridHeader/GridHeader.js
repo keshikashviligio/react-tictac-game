@@ -19,10 +19,10 @@ function GridHeader({winner, turn, isDraw, endGame, tryAgain}) {
   };
 
   let resultText = '';
-  if (turn) {
+  if (!endGame) {
     resultText = `It's ${turn.toUpperCase()}'s turn.`;
   }
-  if (winner) {
+  if (endGame && winner) {
     resultText = `${winner.toUpperCase()} won!`
   } else if (isDraw) {
     resultText = 'We have a draw!';
@@ -37,13 +37,13 @@ function GridHeader({winner, turn, isDraw, endGame, tryAgain}) {
         endGame && (<div className="game-config">
           <form onSubmit={onFormSubmit}>
             <div className="form-group">
-              <label htmlFor="x">
+              <label htmlFor="cols">
                 Cols:
               </label>
               <input onChange={onInputChange} type="number" name="cols" value={formData.cols}/>
             </div>
             <div className="form-group">
-              <label htmlFor="y">
+              <label htmlFor="rows">
                 Rows:
               </label>
               <input onChange={onInputChange} type="number" name="rows" value={formData.rows}/>
@@ -52,7 +52,8 @@ function GridHeader({winner, turn, isDraw, endGame, tryAgain}) {
               <label htmlFor="winPathLength">
                 Moves to win:
               </label>
-              <input max={Math.min(formData.cols, formData.rows)} onChange={onInputChange} type="number" name="movesToWin" value={formData.movesToWin}/>
+              <input min={2} max={Math.min(formData.cols, formData.rows)} onChange={onInputChange} type="number"
+                     name="movesToWin" value={formData.movesToWin}/>
             </div>
             <button type="submit">
               Start Game!
