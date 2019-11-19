@@ -1,4 +1,3 @@
-
 export function checkWinner(grid, player, endGame, config) {
   const movesToWin = config.movesToWin;
   let x, y, z, matches;
@@ -18,7 +17,8 @@ export function checkWinner(grid, player, endGame, config) {
           if (matches >= movesToWin) {
             result.endGame = true;
             result.winner = player;
-            break;
+
+            return result;
           }
         } else {
           result.positions = {};
@@ -36,7 +36,8 @@ export function checkWinner(grid, player, endGame, config) {
           if (matches >= movesToWin) {
             result.endGame = true;
             result.winner = player;
-            break;
+
+            return result;
           }
         } else {
           result.positions = {};
@@ -44,20 +45,19 @@ export function checkWinner(grid, player, endGame, config) {
         }
       }
     }
-    //top left bottom right
+    // top left bottom right
     for (x = 0; x < config.rows - movesToWin + 1; x++) {
       for (y = 0; y < config.cols - movesToWin + 1; y++) {
         matches = 0;
-        let lastMatch = null;
         for (z = 0; z < movesToWin; z++) {
           if (grid[x + z][y + z] === player) {
             matches++;
-            lastMatch = `${x + z}-${y + z}`;
-            result.positions[lastMatch] = true;
+            result.positions[`${x + z}-${y + z}`] = true;
             if (matches >= movesToWin) {
               result.endGame = true;
               result.winner = player;
-              break;
+
+              return result;
             }
           }
         }
@@ -74,7 +74,8 @@ export function checkWinner(grid, player, endGame, config) {
             if (matches >= movesToWin) {
               result.endGame = true;
               result.winner = player;
-              break;
+
+              return result;
             }
           }
         }

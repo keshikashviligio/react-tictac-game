@@ -6,7 +6,7 @@ function Cell({colIndex, addCell, rowIndex, symbol, turn, isActive}) {
   if(!symbol){
       return (<div className="cell empty-cell" onClick={() => addCell(rowIndex, colIndex, turn)} />)
   }
-  return (<div className={`cell ${isActive ? 'active': ''}`}>{symbol} {rowIndex}-{colIndex}</div>)
+  return (<div className={`cell ${isActive ? 'active': ''}`}>{symbol}</div>)
 }
 
 Cell.propTypes = {
