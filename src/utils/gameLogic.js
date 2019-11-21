@@ -59,13 +59,15 @@ export function checkWinner(grid, player, endGame, config) {
 
               return result;
             }
+          }else{
+            result.positions = {};
           }
         }
       }
     }
     // top right bottom left
     for (x = 0; x < (config.rows - movesToWin + 1); x++) {
-      for (y = config.cols - 1; y > config.cols - movesToWin - 1; y--) {
+      for (y = config.cols - 1; y >= config.cols - movesToWin - 1; y--) {
         matches = 0;
         for (z = 0; z < movesToWin; z++) {
           if (grid[x + z][y - z] === player) {
@@ -77,6 +79,8 @@ export function checkWinner(grid, player, endGame, config) {
 
               return result;
             }
+          }else{
+            result.positions = {};
           }
         }
       }
